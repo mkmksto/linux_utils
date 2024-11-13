@@ -21,15 +21,20 @@ A simple daemon that automatically puts your laptop to sleep at a specified time
 1. Install required packages:
 
 ```bash
-sudo apt-get update
-sudo apt-get install libnotify-bin pulseaudio
+sudo apt update
+sudo apt install libnotify-bin pulseaudio
 ```
 
-2. Create the daemon script:
+2. Create the daemon script and install the sound file:
 
 ```bash
+# Create directories
 sudo mkdir -p /usr/local/bin
+sudo mkdir -p /usr/local/share/sleepy_weepy
+
+# Copy the script and sound file
 sudo cp sleepy_weepy.sh /usr/local/bin/
+sudo cp sleepy_weepy_alarmey.wav /usr/local/share/sleepy_weepy/
 sudo chmod +x /usr/local/bin/sleepy_weepy.sh
 ```
 
@@ -82,8 +87,10 @@ SLEEP_HOUR=21
 # Notification message (optional)
 MESSAGE="Sleepy Weepy is going to sleep now"
 
-# Sound file path (optional)
-SOUND_FILE="/path/to/your/sound.mp3"
+# Sound file path (optional, leave empty to use default sound)
+SOUND_FILE=""
+# Default sound file path
+# SOUND_FILE="/usr/local/share/sleepy_weepy/sleepy_weepy_alarmey.wav"
 ```
 
 After modifying the configuration, restart the service:
@@ -135,4 +142,5 @@ sudo systemctl disable sleepy_weepy.service
 sudo rm /etc/systemd/system/sleepy_weepy.service
 sudo rm /usr/local/bin/sleepy_weepy.sh
 sudo rm -r /etc/sleepy_weepy
+sudo rm -r /usr/local/share/sleepy_weepy
 ```

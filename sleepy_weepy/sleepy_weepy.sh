@@ -2,6 +2,7 @@
 
 # Configuration file path
 CONFIG_FILE="/etc/sleepy_weepy/config.conf"
+DEFAULT_SOUND="/usr/local/share/sleepy_weepy/sleepy_weepy_alarmey.wav"
 
 # Function to play sound
 play_sound() {
@@ -42,9 +43,12 @@ check_sleep_time() {
             show_notification "$message"
         fi
         
-        if [ ! -z "$sound_file" ]; then
-            play_sound "$sound_file"
+        # Use default sound if no custom sound is specified
+        if [ -z "$sound_file" ]; then
+            sound_file="$DEFAULT_SOUND"
         fi
+        
+        play_sound "$sound_file"
         
         # Wait for notifications and sound to complete
         sleep 5
@@ -69,7 +73,7 @@ SLEEP_HOUR=21
 # Notification message (optional)
 MESSAGE="Sleepy Weepy is going to sleep now"
 
-# Sound file path (optional)
+# Sound file path (optional, leave empty to use default sound)
 SOUND_FILE=""
 EOL
     fi
