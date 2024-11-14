@@ -16,57 +16,49 @@ A simple daemon that automatically puts your laptop to sleep at a specified time
 - notify-send (usually part of libnotify-bin package)
 - For sound support: PulseAudio (paplay) or ALSA (aplay)
 
-## Installation
+## Quick Installation
 
-1. Install required packages:
-
-```bash
-sudo apt update
-sudo apt install libnotify-bin pulseaudio
-```
-
-2. Create the daemon script and install the sound file:
+For a quick installation, simply run:
 
 ```bash
-# Create directories
-sudo mkdir -p /usr/local/bin
-sudo mkdir -p /usr/local/share/sleepy_weepy
-
-# Copy the script and sound file
-sudo cp sleepy_weepy.sh /usr/local/bin/
-sudo cp sleepy_weepy_alarmey.wav /usr/local/share/sleepy_weepy/
-sudo chmod +x /usr/local/bin/sleepy_weepy.sh
+sudo ./install.sh
 ```
 
-3. Create a systemd service file:
+This script will:
+
+- Check for existing installations
+- Install required packages
+- Set up all necessary files and directories
+- Create and start the service
+
+## Updating
+
+To update an existing installation:
 
 ```bash
-sudo vi /etc/systemd/system/sleepy_weepy.service
+sudo ./update.sh
 ```
 
-4. Add the following content to the service file:
+This script will:
+
+- Backup your current configuration
+- Update all necessary files
+- Restart the service
+- Preserve your settings
+
+## Uninstalling
+
+To completely remove Sleepy Weepy:
 
 ```bash
-[Unit]
-Description=Sleepy Weepy Daemon
-After=network-online.target
-Wants=network-online.target
-
-[Service]
-ExecStart=/usr/local/bin/sleepy_weepy.sh
-Restart=always
-User=root
-
-[Install]
-WantedBy=multi-user.target
+sudo ./uninstall.sh
 ```
 
-5. Enable and start the service:
+This script will:
 
-```bash
-sudo systemctl enable sleepy_weepy.service
-sudo systemctl start sleepy_weepy.service
-```
+- Stop and disable the service
+- Remove all installed files
+- Clean up the system
 
 ## Configuration
 
@@ -131,16 +123,3 @@ sudo journalctl -u sleepy_weepy.service
    - Check the logs: `sudo journalctl -u sleepy_weepy.service`
    - Verify the script has execute permissions
    - Ensure the configuration file is readable
-
-## Uninstallation
-
-To remove Sleepy Weepy:
-
-```bash
-sudo systemctl stop sleepy_weepy.service
-sudo systemctl disable sleepy_weepy.service
-sudo rm /etc/systemd/system/sleepy_weepy.service
-sudo rm /usr/local/bin/sleepy_weepy.sh
-sudo rm -r /etc/sleepy_weepy
-sudo rm -r /usr/local/share/sleepy_weepy
-```
