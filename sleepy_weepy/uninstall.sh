@@ -19,6 +19,7 @@ systemctl disable sleepy_weepy.service
 echo -e "${YELLOW}Removing files...${NC}"
 rm -f /etc/systemd/system/sleepy_weepy.service
 rm -f /usr/local/bin/sleepy_weepy.sh
+rm -f /usr/local/bin/sleepy-weepy-status
 rm -rf /etc/sleepy_weepy
 rm -rf /usr/local/share/sleepy_weepy
 

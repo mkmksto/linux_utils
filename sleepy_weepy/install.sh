@@ -40,8 +40,10 @@ mkdir -p /etc/sleepy_weepy
 
 echo -e "${YELLOW}Copying files...${NC}"
 cp sleepy_weepy.sh /usr/local/bin/
+cp sleepy-weepy-status /usr/local/bin/
 cp sleepy_weepy_alarmey.wav /usr/local/share/sleepy_weepy/
 chmod +x /usr/local/bin/sleepy_weepy.sh
+chmod +x /usr/local/bin/sleepy-weepy-status
 
 echo -e "${YELLOW}Creating service file...${NC}"
 cat > /etc/systemd/system/sleepy_weepy.service << EOL

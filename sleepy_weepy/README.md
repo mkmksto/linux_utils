@@ -30,6 +30,7 @@ This script will:
 - Install required packages
 - Set up all necessary files and directories
 - Create and start the service
+- Create another script for command-line interface (inside `/usr/local/bin`) for checking status, time, and help (Note: this is separate from the daemon)
 
 ## Updating
 
@@ -123,3 +124,31 @@ sudo journalctl -u sleepy_weepy.service
    - Check the logs: `sudo journalctl -u sleepy_weepy.service`
    - Verify the script has execute permissions
    - Ensure the configuration file is readable
+
+## CLI Commands
+
+Sleepy Weepy comes with a command-line interface to check its status and configuration. Here are the available commands:
+
+Note: this is a separate script from the daemon.
+
+```bash
+# Show current status and time until sleep
+bash sleepy-weepy-status status
+
+# Show configured sleep time
+bash sleepy-weepy-status time
+
+# Show help message
+bash sleepy-weepy-status help
+```
+
+Example output for `sleepy-weepy status`:
+
+```
+Sleepy Weepy Status
+Current time: 14:30
+Sleep time: 21:00
+Time until sleep: 6h 30m
+Message: Sleepy Weepy is going to sleep now
+Sound: Using default sound
+```

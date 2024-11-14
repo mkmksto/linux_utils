@@ -29,7 +29,9 @@ fi
 
 echo -e "${YELLOW}Updating files...${NC}"
 cp sleepy_weepy.sh /usr/local/bin/
+cp sleepy-weepy-status /usr/local/bin/
 chmod +x /usr/local/bin/sleepy_weepy.sh
+chmod +x /usr/local/bin/sleepy-weepy-status
 cp sleepy_weepy_alarmey.wav /usr/local/share/sleepy_weepy/
 
 echo -e "${YELLOW}Starting service...${NC}"
