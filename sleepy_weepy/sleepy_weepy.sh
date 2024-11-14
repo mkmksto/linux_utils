@@ -37,8 +37,33 @@ check_sleep_time() {
     local sound_file="$3"
     
     current_hour=$(date +%H)
+    current_min=$(date +%M)
     
-    if [ "$current_hour" -eq "$target_hour" ]; then
+    # Check for 10 minutes before sleep time
+    local check_hour=$target_hour
+    local check_minute=50
+    
+    # Adjust for previous hour if target is midnight
+    if [ "$target_hour" -eq 0 ]; then
+        check_hour=23
+    else
+        check_hour=$((target_hour - 1))
+    fi
+    
+    # Check if it's between 50-53 minutes (i.e. 7-10 minutes) of the hour before sleep time
+    if [ "$current_hour" -eq "$check_hour" ] && [ "$current_min" -ge 50 ] && [ "$current_min" -le 53 ]; then
+        local mins_until=$(( (60 - current_min) + (target_hour - current_hour - 1) * 60 ))
+        show_notification "Going to sleep in $mins_until minutes..."
+        # Use default sound if no custom sound is specified
+        if [ -z "$sound_file" ]; then
+            sound_file="$DEFAULT_SOUND"
+        fi
+        
+        play_sound "$sound_file"
+
+    fi
+    
+    if [ "$current_hour" -eq "$target_hour" ] && [ "$current_min" -eq "0" ]; then
         if [ ! -z "$message" ]; then
             show_notification "$message"
         fi
@@ -88,4 +113,4 @@ EOL
     done
 }
 
-main 
+main

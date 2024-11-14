@@ -86,7 +86,7 @@ SOUND_FILE=""
 # SOUND_FILE="/usr/local/share/sleepy_weepy/sleepy_weepy_alarmey.wav"
 ```
 
-After modifying the configuration, restart the service:
+After modifying the configuration, restart the service (Note: after I've tested the script, this might not even be necessary):
 
 ```bash
 sudo systemctl restart sleepy_weepy.service
