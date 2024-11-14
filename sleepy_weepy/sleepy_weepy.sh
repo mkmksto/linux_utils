@@ -25,7 +25,7 @@ show_notification() {
     for user in $(who | cut -d' ' -f1 | sort | uniq); do
         uid=$(id -u "$user")
         if [ ! -z "$uid" ]; then
-            sudo -u "$user" DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$uid/bus notify-send "Sleepy Weepy" "$message"
+            sudo -u "$user" DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$uid/bus" notify-send "Sleepy Weepy" "$message"
         fi
     done
 }
@@ -41,7 +41,7 @@ check_sleep_time() {
     
     # Check for 10 minutes before sleep time
     local check_hour=$target_hour
-    local check_minute=50
+    # local check_minute=50
     
     # Adjust for previous hour if target is midnight
     if [ "$target_hour" -eq 0 ]; then
