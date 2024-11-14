@@ -1,6 +1,6 @@
 # Sleepy Weepy
 
-A simple daemon that automatically puts your laptop to sleep at a specified time every day.
+~~A simple daemon that automatically puts your laptop to sleep at a specified time every day.~~ Linux stuff that injects sleepiness into your system 🙀🙀.
 
 ## Features
 
