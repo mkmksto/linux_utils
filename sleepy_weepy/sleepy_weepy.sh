@@ -79,7 +79,8 @@ check_sleep_time() {
         sleep 5
         
         # Suspend the system
-        systemctl suspend
+        # systemctl suspend
+        systemctl hibernate
         
         # Wait for 1 hour to avoid multiple suspends
         sleep 3600
