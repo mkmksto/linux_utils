@@ -21,7 +21,7 @@
 For a quick installation, simply run:
 
 ```bash
-sudo ./install.sh
+sudo bash ./install.sh
 ```
 
 This script will:
@@ -37,7 +37,7 @@ This script will:
 To update an existing installation:
 
 ```bash
-sudo ./update.sh
+sudo bash ./update.sh
 ```
 
 This script will:
@@ -52,7 +52,7 @@ This script will:
 To completely remove Sleepy Weepy:
 
 ```bash
-sudo ./uninstall.sh
+sudo bash ./uninstall.sh
 ```
 
 This script will:
@@ -133,13 +133,13 @@ Note: this is a separate script from the daemon.
 
 ```bash
 # Show current status and time until sleep
-bash sleepy-weepy-status status
+sleepy-weepy-status status
 
 # Show configured sleep time
-bash sleepy-weepy-status time
+sleepy-weepy-status time
 
 # Show help message
-bash sleepy-weepy-status help
+sleepy-weepy-status help
 ```
 
 Example output for `sleepy-weepy status`:
