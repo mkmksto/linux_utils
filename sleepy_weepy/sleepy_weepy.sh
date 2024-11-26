@@ -51,7 +51,7 @@ check_sleep_time() {
     fi
     
     # Check if it's between 50-53 minutes (i.e. 7-10 minutes) of the hour before sleep time
-    if [ "$current_hour" -eq "$check_hour" ] && [ "$current_min" -ge 50 ] && [ "$current_min" -le 53 ]; then
+    if [ "$current_hour" -eq "$check_hour" ] && [ "$current_min" -ge 50 ] && [ "$current_min" -le 55 ]; then
         local mins_until=$(( (60 - current_min) + (target_hour - current_hour - 1) * 60 ))
         show_notification "Going to sleep in $mins_until minutes..."
         # Use default sound if no custom sound is specified
