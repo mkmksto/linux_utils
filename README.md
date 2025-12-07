@@ -1,3 +1,3 @@
-# Linux Utilities for the retarted
+# Linux Utilities heh
 
 welcome
